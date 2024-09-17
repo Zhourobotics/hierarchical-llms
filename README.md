@@ -46,20 +46,20 @@ llm_outer_dur: 10
 llm_on: True
 ```
 
-- Use steps and dt to control the experiment duation.
+- Use steps and dt to control the experiment duration.
 ```
 steps: 100
 Problem: dt: 0.2
 ```
 
-- Use task ability to change the maximum number of target a robot can track
+- Use task ability to change the maximum number of targets a robot can track
 ```
 task_ability: 1
 ```
 
-- The initial task assignment is given for the set up.
+- The initial task assignment is given for the setup.
 
-### Run (The complete code will release later)
+### Run (The complete code will be released later)
 
 ```
 python tracker_server.py exp1
@@ -67,4 +67,9 @@ python tracker_server.py exp1
 
 change exp to test different settings.
 
-- You may need to clean the solver folder when you change some setups from problem and dangerzone.
+- You may need to clean the solver folder when you change some setups from the problem and danger zone.
+
+
+## Maintaince
+
+For any technical issues, please contact Yuwei Wu (yuweiwu@seas.upenn.edu).
