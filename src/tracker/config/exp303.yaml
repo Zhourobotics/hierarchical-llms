@@ -1,0 +1,76 @@
+
+help: Configuration file, two robots, two targets, three type I zones
+testID: 102
+exp: "simulation"  # 0: "simulation", 1: "ros simulation", 2: "ros real"
+steps: 300
+ 
+frame_id: "global_origin"
+llm_inner_dur: 1
+llm_outer_dur: 4
+llm_on: True
+
+Problem:
+    robotID: [21, 22, 23, 24]
+    robotID_drone: [21, 22, 23, 24]
+    targetID: [122, 123, 124, 125]
+    targetID_car: [122, 123, 124, 125]
+    targetStartPos: [[-1, -0.1],  [-1, 0.1], 
+                     [1.5, 0.25], [1.5, -0.25]]  # [x, y], or [x, y, z]
+    targetStartVel: [[0.1, 0], [0.1, 0], 
+                     [-0.1, 0], [-0.1, 0]]
+    robotStartPos: [[-2.5, -0.5], [-2.5, 0.5], 
+                    [2.0, 0.2], [2.0, -0.2],
+                    [-3.5, 0.5], [-3.5, -0.5],
+                    [3.5, 0.6], [3.5, -0.6]]
+    robotStartVel: [[0.0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
+    target_dyn_type: "second_order_dynamics"
+    robot_dyn_type: "first_order_dynamics" # "second_order_dynamics"
+
+    # generate initial task assignment matrix
+    assignment_matrix: [[1, 1, 0, 0],
+                             [1, 1, 0, 0],
+                             [0, 0, 1, 1],
+                             [0, 0, 1, 1]]
+
+
+    task_ability: 2
+    target_movement: "linear"  # "random_walk" or "linear"
+    # row is robot, column is target
+    robotHeights: [1.2, 1.7, 1.5, 1.9]  #, 0.1]
+
+    N : 2
+    dt: 0.2
+    dim: 2
+    u_bounds: [-0.5, 0.5]  # control effort bounds
+    x_bounds: [[-10, 10], [-10, 10]]  # x bound, and y bound
+    weights : [0.01, 10.0, 50.0, 50.0] # control input, trace, slack 1, slack 2  # it's variables that you can change 
+    range_sensor: [15.0, 0.2]   #[range_peak, range_shape]
+    bearing_sensor: [15.0, 0.2]   #[bearing_peak, bearing_shape]
+    min_dist: 0.6
+    max_dist: 6000  # can also affect the quality of the solution, can set inf
+    solver_name: "resilient_bench303"
+    use_cent_solver: True # if True, the central solver will be used
+
+    ## archived
+    resources: 500 # for each robot
+
+
+
+Zones:
+    nTypeI: 5
+    nTypeII: 2
+    typeI_mu: [[2.8, 2], [-3.5, -2.5],  [1, 2], [4.8, -0.5], [6, -2.5]] # [x, y], or [x, y, z]     [[x1, y1], [x2, y2]]
+    typeI_cov: [[0.3, 0.3], [0.6, 0.6], [0.2, 0.2], [0.3, 0.3], [0.6, 0.6]]
+    typeII_mu: [[-0.5, 0.0], [3.5, -0.2]]
+    typeII_cov: [[0.6, 0.6], [0.3, 0.3]]
+    typeI_delta: [0.1, 0.1, 0.1, 0.1, 0.1]  # this is for the type I zones
+    typeII_delta: [0.2, 0.2]  # this is for the type II zones
+    eps1: 0.1
+    eps2: 0.9
+    eps2_single: 0.1
+ 
+    #### attack parameters
+    attack_recover_eps: 0.3
+    attack_dt: 0.5 # every 1.0 second the attack will happen
+    attack_mcnt: 1000 # the maximum number of attacks
+    attack_seed: 0

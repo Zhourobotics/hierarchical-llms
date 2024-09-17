@@ -1,6 +1,6 @@
 # Hierarchical LLMs In-the-loop Optimization
 
-A hierarchical Large Language Models (LLMs) in-the-loop optimization framework for real-time multi-robot task allocation and target tracking in an unknown hazardous environment subject to sensing and communication attacks.
+A hierarchical Large Language Models (LLMs) framework for real-time multi-robot task allocation and target tracking with unknown hazards.
 
 
 ## About 
@@ -8,6 +8,9 @@ A hierarchical Large Language Models (LLMs) in-the-loop optimization framework f
 __Authors__: [Yuwei Wu](https://github.com/yuwei-wu), [Yuezhan Tao](https://sites.google.com/view/yuezhantao/home), [Peihan Li](https://scholar.google.com/citations?user=Qg7-Gr0AAAAJ&hl=en), [Guangyao Shi](https://guangyaoshi.github.io/), Gaurav S. Sukhatmem, and Vijay Kumar, and [Lifeng Zhou](https://zhourobotics.github.io/)
 
 __Video Links__:  [Youtube]()
+
+
+__Related Paper__: Yuwei Wu, Yuezhan Tao, Peihan Li, Guangyao Shi, Gaurav S. Sukhatme, Vijay Kumar,  Lifeng Zhou, "Hierarchical LLMs In-the-loop Optimization for Real-time Multi-Robot Target Tracking under Unknown Hazards". 2024
 
 
 __System Architecture__: 
@@ -31,18 +34,9 @@ pip install openai
 ```
 
 
-### Run 
-
-```
-python tracker_server.py exp1
-```
-
-change exp to test different settings.
-
-- You may need to clean the solver folder when you change some setups from problem and dangerzone.
-
-
 ### Config
+
+To check more scenarios and experiment settings, please refer to the files in "src/tracker/config/".
 
 - LLM related paramters. Set true to run LLMs. The duration is to control the calling frequency. (will change to callback later)
 
@@ -62,3 +56,15 @@ Problem: dt: 0.2
 ```
 task_ability: 1
 ```
+
+- The initial task assignment is given for the set up.
+
+### Run (The complete code will release later)
+
+```
+python tracker_server.py exp1
+```
+
+change exp to test different settings.
+
+- You may need to clean the solver folder when you change some setups from problem and dangerzone.

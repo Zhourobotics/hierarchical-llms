@@ -1,0 +1,64 @@
+
+help: Configuration file, two robots, two targets, one type I zone and one type II zone
+testID: 107
+exp: "simulation"  # 0: "simulation", 1: "ros simulation", 2: "ros real"
+steps: 200
+ 
+frame_id: "world"
+llm_inner_dur: 5
+llm_outer_dur: 20
+llm_on: False
+
+Problem:
+    robotID: [0, 1, 2]
+    robotID_drone: [3, 4]
+    targetID: [0, 1, 2, 3]
+    targetID_car: [3, 4]
+    targetStartPos: [[0, -0.5], [0, -1], [0, 1.5],  [0, 0.8]] #, [1.5, 0.25]]  # [x, y], or [x, y, z]
+    targetStartVel: [[0.1, 0], [0.1, 0], [0.1, 0], [0.1, 0.0]] #, [-0.1, 0]]
+    robotStartPos: [[-3, -2], [-3, 0.0], [-3, 2]] #, [2.0, 0.2]]
+    robotStartVel: [[0.0, 0], [0, 0], [0, 0]] #, [0, 0]]
+    target_dyn_type: "second_order_dynamics"
+    robot_dyn_type: "first_order_dynamics" # "second_order_dynamics"
+    assignment_matrix: [[0, 1, 0, 0], 
+                             [1, 0, 1, 0],
+                             [0, 0, 1, 1]] # [0, 0, 1]]  # robot i is assigned to target j
+    task_ability: 2
+    target_movement: "linear"  # "random_walk" or "linear"
+    # row is robot, column is target
+    robotHeights: [1.0, 1.5] #, 0.1]
+
+    N : 2
+    dt: 0.2
+    dim: 2
+    u_bounds: [-1.0, 1.0]  # control effort bounds
+    x_bounds: [[-6, 6], [-6, 6]]  # x bound, and y bound
+    weights : [0.1, 10.0, 10.0, 10.0] # control input, trace, slack 1, slack 2  # it's variables that you can change 
+    range_sensor: [15.0, 0.2]   #[range_peak, range_shape]
+    bearing_sensor: [15.0, 0.2]   #[bearing_peak, bearing_shape]
+    min_dist: 0.4
+    max_dist: 6000  # can also affect the quality of the solution, can set inf
+    solver_name: "resilient"
+    use_cent_solver: True # if True, the central solver will be used
+
+    ## archived
+    resources: 500 # for each robot
+
+Zones:
+    nTypeI: 1
+    nTypeII: 1
+    typeI_mu: [[2.5, 0.5]] # [x, y], or [x, y, z]     [[x1, y1], [x2, y2]]
+    typeI_cov: [[0.3, 0.3]]
+    typeII_mu: [[-0.2, 0.0]]
+    typeII_cov: [[0.6, 0.6]]
+    typeI_delta: [0.1, 0.1, 0.1]  # this is for the type I zones
+    typeII_delta: [0.1, 0.1]  # this is for the type II zones
+    eps1: 0.05
+    eps2: 0.95
+    eps2_single: 0.05
+
+    #### attack parameters
+    attack_recover_eps: 0.17
+    attack_dt: 0.4 # every 1.0 second the attack will happen
+    attack_mcnt: 10 # the maximum number of attacks
+    attack_seed: 0
