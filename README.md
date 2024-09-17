@@ -1,4 +1,21 @@
-# llm_target_tracking
+# Hierarchical LLMs In-the-loop Optimization
+
+A hierarchical Large Language Models (LLMs) in-the-loop optimization framework for real-time multi-robot task allocation and target tracking in an unknown hazardous environment subject to sensing and communication attacks.
+
+
+## About 
+
+__Authors__: [Yuwei Wu](https://github.com/yuwei-wu), [Yuezhan Tao](https://sites.google.com/view/yuezhantao/home), [Peihan Li](https://scholar.google.com/citations?user=Qg7-Gr0AAAAJ&hl=en), [Guangyao Shi](https://guangyaoshi.github.io/), Gaurav S. Sukhatmem, and Vijay Kumar, and [Lifeng Zhou](https://zhourobotics.github.io/)
+
+__Video Links__:  [Youtube]()
+
+
+__System Architecture__: 
+
+<p align="center">
+  <img src="docs/llm.png" />
+</p>
+
 
 
 ### Prerequisites
@@ -7,26 +24,25 @@
 
 - [Forces Pro](https://www.embotech.com/products/forcespro/overview/): You can request an academic license from [here](https://www.embotech.com/products/forcespro/licensing/).
 
-- [openai](https://platform.openai.com/docs/overview)
-
+- [openai](https://platform.openai.com/docs/overview): Install by 
 
 ```
 pip install openai
 ```
 
 
-### run 
+### Run 
 
 ```
 python tracker_server.py exp1
 ```
+
 change exp to test different settings.
 
 - You may need to clean the solver folder when you change some setups from problem and dangerzone.
 
 
-
-### config
+### Config
 
 - LLM related paramters. Set true to run LLMs. The duration is to control the calling frequency. (will change to callback later)
 
@@ -45,48 +61,4 @@ Problem: dt: 0.2
 - Use task ability to change the maximum number of target a robot can track
 ```
 task_ability: 1
-```
-
-
-
-
-### folder
-
-```
-└── tracker
-  ├── CMakeLists.txt
-  ├── config
-  │   ├── exp1.yaml
-  │   ├── exp2.yaml
-  │   ├── exp3.yaml
-  │   ├── exp4.yaml
-  │   ├── exp5.yaml
-  │   ├── exp6.yaml
-  │   ├── exp7.yaml
-  │   └── sim.rviz
-  ├── data
-  │   ├── 0.pcd
-  │   ├── 1.pcd
-  │   └── source
-  │       └── WMSC_points.pcd
-  ├── launch
-  │   └── vis_sim.launch
-  ├── package.xml
-  └── script
-      ├── llm_adaptive_server.py
-      ├── model
-      │   ├── config_loader.py
-      │   ├── danger_zones.py
-      │   ├── dynamics.py
-      │   ├── forcepro_centralized.py
-      │   ├── forcepro_single.py
-      │   ├── problem.py
-      │   └── tracker_manger.py
-      ├── tracker_server.py
-      └── utils
-          ├── keys.py
-          ├── pcd_segmentation.py
-          ├── publish_pcd.py
-          ├── visualizer.py
-          └── visualizer_ros.py
 ```
