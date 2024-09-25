@@ -7,7 +7,7 @@ A hierarchical Large Language Models (LLMs) framework for real-time multi-robot 
 
 __Authors__: [Yuwei Wu](https://github.com/yuwei-wu), [Yuezhan Tao](https://sites.google.com/view/yuezhantao/home), [Peihan Li](https://scholar.google.com/citations?user=Qg7-Gr0AAAAJ&hl=en), [Guangyao Shi](https://guangyaoshi.github.io/), Gaurav S. Sukhatmem, and Vijay Kumar, and [Lifeng Zhou](https://zhourobotics.github.io/)
 
-__Video Links__:  [Youtube]()
+__Video Links__:  [Youtube](https://youtu.be/282BHEHNBq8)
 
 
 __Related Paper__: Yuwei Wu, Yuezhan Tao, Peihan Li, Guangyao Shi, Gaurav S. Sukhatme, Vijay Kumar,  Lifeng Zhou, "Hierarchical LLMs In-the-loop Optimization for Real-time Multi-Robot Target Tracking under Unknown Hazards". 2024
