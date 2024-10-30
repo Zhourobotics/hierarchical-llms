@@ -59,7 +59,7 @@ task_ability: 1
 
 - The initial task assignment is given for the set up.
 
-### Run (The complete code will release later)
+### Run
 
 ```
 python tracker_server.py exp1

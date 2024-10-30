@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+
+  <arg name="world_frame_id" default="world"/>
+  <arg name="use_pcd" default="true"/>
+  
+
+  <node name="rviz" pkg="rviz" type="rviz" output="screen"
+    args="-d $(find tracker)/config/sim.rviz"> 
+  </node>
+  
+  <node pkg="tracker" type="llm_adaptive_server.py" name="llm_adaptive_server" output="screen">
+    <param name="exp_name" value="exp2"/>
+  </node>
+
+  <node pkg="tracker" type="tracker_server.py" name="tracker_server" output="screen">
+  </node>
+  
+
+  <node if="$(arg use_pcd)" name="pcd_publisher" pkg="tracker" type="publish_pcd.py" output="screen" />
+  
+  <node pkg="odom_visualization" name="odom_visualization1" type="odom_visualization" output="screen">
+    <remap from="~odom" to="/drone21/odom"/>
+    <param name="color/r" value="0.7"/>    
+    <param name="color/g" value="0.2"/>        
+    <param name="color/b" value="0"/>        
+    <param name="color/a" value="1.0"/>       
+    <param name="covariance_scale" value="100.0"/>       
+    <param name="robot_scale" value="1.5"/>
+    <param name="frame_id" value ="$(arg world_frame_id)"/>
+  </node>
+
+
+  <node pkg="odom_visualization" name="odom_visualization2" type="odom_visualization" output="screen">
+    <remap from="~odom" to="/drone26/odom"/>
+    <param name="color/r" value="0.58"/>    
+    <param name="color/g" value="0.0"/>        
+    <param name="color/b" value="0.812"/>        
+    <param name="color/a" value="1.0"/>       
+    <param name="covariance_scale" value="100.0"/>       
+    <param name="robot_scale" value="1.5"/>
+    <param name="frame_id" value ="$(arg world_frame_id)"/>
+  </node>
+
+  <node pkg="odom_visualization" name="odom_visualization_car1" type="odom_visualization_car" output="screen">
+    <remap from="~odom" to="/target122/odom"/>
+    <param name="color/r" value="0.58"/>    
+    <param name="color/g" value="0.0"/>        
+    <param name="color/b" value="0.812"/>        
+    <param name="color/a" value="1.0"/>       
+    <param name="covariance_scale" value="100.0"/>       
+    <param name="robot_scale" value="0.05"/>
+    <param name="frame_id" value ="$(arg world_frame_id)"/>
+  </node>
+
+  <node pkg="odom_visualization" name="odom_visualization_car2" type="odom_visualization_car" output="screen">
+    <remap from="~odom" to="/target124/odom"/>
+    <param name="color/r" value="0.58"/>    
+    <param name="color/g" value="0.0"/>        
+    <param name="color/b" value="0.812"/>        
+    <param name="color/a" value="1.0"/>       
+    <param name="covariance_scale" value="100.0"/>       
+    <param name="robot_scale" value="0.05"/>
+    <param name="frame_id" value ="$(arg world_frame_id)"/>
+  </node>
+
+
+</launch>
