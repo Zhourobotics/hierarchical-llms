@@ -69,9 +69,6 @@ python tracker_server.py exp1
 
 change exp to test different settings.
 
-<<<<<<< HEAD
-- You may need to clean the solver folder when you change some setups from problem and dangerzone.
-=======
 - You may need to clean the solver folder when you change some setups from the problem and danger zone.
 
 
