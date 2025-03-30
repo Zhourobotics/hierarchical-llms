@@ -613,20 +613,16 @@ class TrackerServer:
 
         
 
-
-
-        
-
-
-
-
-#have args for exp_name
-if __name__ == "__main__": 
+if __name__ == '__main__':
 
     import sys
 
+    #try
+    try:
+        exp_name = sys.argv[1]
+        print("exp is ", exp_name)
+    except:
 
-    exp_name = "exp2"
+        exp_name = "exp3"
 
     tracker_server = TrackerServer(exp_name)
-    #rospy.spin()
